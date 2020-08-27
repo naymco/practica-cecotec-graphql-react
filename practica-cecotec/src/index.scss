@@ -1,0 +1,46 @@
+
+// Colores base
+$bgBaseColor: #3d3d3d;
+$bgPrimaryColor: #0094b9;
+$bgAlertColor: #e44e4e;
+$bgSuccessColor: #45d445;
+$bgLigthColor: #fafafa;
+
+// especificaciones base
+$borderRadiusSm: 3px;
+$borderRadiusLg: 5px;
+
+// tamaño de fuentes
+$fontSizeLg: 2rem;
+$fontSizeSm: 1rem;
+
+// contenedor
+$containerHz: flex;
+$containerVr: block;
+$justifyFlex: space-around;
+
+// padding y margins normales
+$paddingNm: 20px;
+$paddingSm: 10px;
+$paddingLg: 30px;
+$paddingXs: 5px;
+
+$marginNm: 20px;
+$marginSm: 10px;
+$marginLg: 30px;
+$marginXs: 5px;
+
+body{
+  background-color: $bgLigthColor;
+  color: $bgBaseColor;
+}
+
+.nav-bar{
+  background-color: $bgBaseColor;
+  color: $bgLigthColor;
+  border-radius: $borderRadiusSm;
+}
+
+.nav-bar h1{
+  padding: $paddingXs;
+}
