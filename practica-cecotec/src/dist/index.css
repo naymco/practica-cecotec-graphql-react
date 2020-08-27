@@ -7,8 +7,11 @@ body {
   background-color: #3d3d3d;
   color: #fafafa;
   border-radius: 3px;
+  padding: 5px;
 }
 
-.nav-bar h1 {
+.a {
   padding: 5px;
+  color: #fafafa;
+  text-decoration: none;
 }
