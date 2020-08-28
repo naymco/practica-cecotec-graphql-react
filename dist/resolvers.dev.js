@@ -19,6 +19,42 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+var formatErrors = function formatErrors(error, otherErrors) {
+  var errors = error.errors;
+  var errores = [];
+
+  if (errors) {
+    Object.entries(errors).map(function (error) {
+      var _error$ = error[1],
+          path = _error$.path,
+          message = _error$.message;
+      errores.push({
+        path: path,
+        message: message
+      });
+    });
+    errores = errores.concat(otherErrors);
+    return errores;
+  } else if (otherErrors.length) {
+    return otherErrors;
+  }
+
+  var uknownError = {};
+
+  switch (error.code) {
+    case 11000:
+      uknownError.path = 'email';
+      uknownError.message = 'El email ya existe prueba con otro, por favor';
+      break;
+
+    default:
+      uknownError.path = 'Error desconocido';
+      uknownError.message = error.message;
+  }
+
+  return [uknownError];
+};
+
 var _default = {
   Query: {
     allUsers: function allUsers(parent, args, _ref) {
@@ -89,41 +125,64 @@ var _default = {
   },
   Mutation: {
     createUser: function createUser(parent, _ref4, _ref5) {
-      var password, args, models, hashPassword, user;
+      var password, args, models, otherErrors, hashPassword, user;
       return regeneratorRuntime.async(function createUser$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               password = _ref4.password, args = _objectWithoutProperties(_ref4, ["password"]);
               models = _ref5.models;
-              _context4.prev = 2;
-              _context4.next = 5;
+              otherErrors = [];
+              _context4.prev = 3;
+
+              if (password.length < 8) {
+                otherErrors.push({
+                  path: 'password',
+                  message: 'El password debe contener mínimo 8 caracteres.'
+                });
+              }
+
+              _context4.next = 7;
               return regeneratorRuntime.awrap(_bcrypt["default"].hash(password, 10));
 
-            case 5:
+            case 7:
               hashPassword = _context4.sent;
-              _context4.next = 8;
+              _context4.next = 10;
               return regeneratorRuntime.awrap(models.Users.create(_objectSpread({}, args, {
                 password: hashPassword
               })));
 
-            case 8:
+            case 10:
               user = _context4.sent;
-              console.log(user);
-              return _context4.abrupt("return", true);
+
+              if (!otherErrors.length) {
+                _context4.next = 13;
+                break;
+              }
+
+              throw otherErrors;
 
             case 13:
-              _context4.prev = 13;
-              _context4.t0 = _context4["catch"](2);
-              console.log(_context4.t0);
-              return _context4.abrupt("return", false);
+              return _context4.abrupt("return", {
+                info: user,
+                success: true,
+                errors: []
+              });
 
-            case 17:
+            case 16:
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](3);
+              return _context4.abrupt("return", {
+                success: false,
+                errors: formatErrors(_context4.t0, otherErrors)
+              });
+
+            case 19:
             case "end":
               return _context4.stop();
           }
         }
-      }, null, null, [[2, 13]]);
+      }, null, null, [[3, 16]]);
     },
     createProduct: function createProduct(parent, args, _ref6) {
       var models, product;

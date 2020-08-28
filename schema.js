@@ -24,6 +24,17 @@ export default `
         price: Int!
     }
 
+    type Error{
+        path: String!,
+        message: String!
+    }
+
+    type Response {
+        info: Users
+        success: Boolean!
+        errors: [Error]
+    }
+
     type Mutation{
         createUser(
             avatar: String,
@@ -31,7 +42,7 @@ export default `
             lastName: String!,
             email: String!,
             password: String!
-        ): Boolean!
+        ): Response!
 
         createProduct(
             productName: String!,
