@@ -1,15 +1,21 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 // Colores base
+$bgNightColor: #111111;
 $bgBaseColor: #3d3d3d;
 $bgPrimaryColor: #0094b9;
 $bgAlertColor: #e44e4e;
-$bgSuccessColor: #45d445;
+$bgSuccessColor: #409140;
 $bgLigthColor: #fafafa;
+$bgGreyColor: #d7d7d7;
 
 // especificaciones base
 $borderRadiusSm: 3px;
 $borderRadiusLg: 5px;
+$borderNone: none;
 
+// fuentes
+$titleh1: 'Righteous',
+cursive;
 // tamaño de fuentes
 $fontSizeLg: 2rem;
 $fontSizeSm: 1rem;
@@ -18,6 +24,12 @@ $fontSizeSm: 1rem;
 $containerHz: flex;
 $containerVr: block;
 $justifyFlex: space-around;
+
+// Anchos y altos
+$widthMedium: 50%;
+$widthSmall: 25%;
+$widthLarge: 75%;
+$widthFull: 100%;
 
 // padding y margins normales
 $paddingNm: 20px;
@@ -30,20 +42,92 @@ $marginSm: 10px;
 $marginLg: 30px;
 $marginXs: 5px;
 
-body{
+body {
   background-color: $bgLigthColor;
   color: $bgBaseColor;
-}
+  margin: 0;
+  padding: 0;
 
-.nav-bar{
-  background-color: $bgBaseColor;
-  color: $bgLigthColor;
-  border-radius: $borderRadiusSm;
-  padding: $paddingXs;
-}
 
-.a{
-  padding: $paddingXs;
-  color: $bgLigthColor;
-  text-decoration: none;
+  .nav-bar {
+    background-color: $bgBaseColor;
+    color: $bgLigthColor;
+    border-radius: $borderRadiusSm;
+    padding: $paddingXs;
+
+    .a {
+      padding: $paddingXs;
+      color: $bgLigthColor;
+      text-decoration: none;
+    }
+  }
+
+  .container {
+    box-sizing: border-box;
+    background: url('https://pixabay.com/get/51e6dd474854b108feda8460da2932771d3ad8e35b5170_1920.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: $widthFull;
+    height: 100vh;
+
+    .register-form {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: $containerVr;
+      max-width: 500px;
+      width: $widthMedium;
+      text-align: center;
+      padding: $paddingLg 0;
+      margin: $marginNm;
+      border-radius: $borderRadiusLg;
+      color: $bgLigthColor;
+      -webkit-box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
+      box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
+      animation: register-form 0.5s linear both;
+
+    
+
+      h1 {
+        font-family: $titleh1;
+      }
+
+      img {
+        width: $widthMedium;
+      }
+
+      input {
+        width: $widthLarge;
+        margin: $marginXs;
+        padding: $paddingSm;
+        border-radius: $borderRadiusSm;
+        border: $borderNone;
+      }
+
+      .btn-success {
+        width: 78%;
+        margin: $marginXs;
+        padding: $paddingSm 0;
+        border-radius: $borderRadiusSm;
+        border: 1px solid $bgGreyColor;
+        background-color: $bgSuccessColor;
+        color: $bgLigthColor;
+      }
+
+      .btn-primary{
+        width: 78%;
+        margin: $marginXs;
+        padding: $paddingXs;
+        border-radius: $borderRadiusSm;
+        border: 1px solid $bgGreyColor;
+        background-color: $bgPrimaryColor;
+        color: $bgLigthColor;
+      }
+    }
+  }
+
+
 }

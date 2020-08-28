@@ -10,7 +10,7 @@ export default `
         _id: ID!
         avatar: String
         firstName: String!
-        lastName: String
+        lastName: String!
         email: String!
         password: String!
         products: [Products]
@@ -20,18 +20,18 @@ export default `
         _id: ID!
         productName: String!
         description: String!
-        image: String!
+        image: String
         price: Int!
     }
 
     type Mutation{
         createUser(
-            avatar: String!,
+            avatar: String,
             firstName: String!,
             lastName: String!,
             email: String!,
             password: String!
-        ): Users!
+        ): Boolean!
 
         createProduct(
             productName: String!,

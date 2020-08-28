@@ -1,4 +1,4 @@
-
+import bcrypt from 'bcrypt';
 
 export default {
     Query: {
@@ -19,11 +19,16 @@ export default {
         }
     },
     Mutation: {
-        createUser: async (parent, args, { models }) => {
-            console.log(args);
-           const user = await models.Users.create(args);
-
-           return user;
+        createUser: async (parent, {password, ...args}, { models }) => {
+           try {
+               const hashPassword = await bcrypt.hash(password, 10)
+               const user = await models.Users.create({...args, password: hashPassword});
+               console.log(user)
+               return true;
+           } catch (error) {
+               console.log(error)
+               return false;
+           }
         },
         createProduct: async (parent, args, {models}) =>{
             console.log(args);
