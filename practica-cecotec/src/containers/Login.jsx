@@ -13,14 +13,22 @@ import "../index.scss";
 const Login = ({ history }) => {
   const [login, setLogin] = React.useState(true);
   const [ value, setValue ] = React.useState({});
+  const [ errorSignup, setErrorSignup ] = React.useState([]);
+
   const [ register ] = useMutation(REGISTER_NEW_USER);
 
   const enviar = async (event, value) => {
     event.preventDefault();
     const res = await register({ variables: value});
-    console.log("envando datos", res);
-    history.push("/products");
-    setValue({});
+
+    const { errors, success } = res.data.createUser;
+    
+    if(!success) {
+      setErrorSignup(errors);
+    }
+
+    setValue("");
+    setErrorSignup(null);
   };
 
   const handleChange = (event)=>{
@@ -39,6 +47,15 @@ const Login = ({ history }) => {
           alt="logo"
         />
         <h1>{login ? "Iniciar sesión" : "Regístrate"}</h1>
+        {
+          errorSignup ? (
+            <Fragment> 
+              {errorSignup.map( (error, index) => (
+              <p className="errors-validator" key={index}> [{error.path}]: {error.message} </p>
+              
+            ))} </Fragment>
+          ) : null
+        }
         {login ? (
           <Fragment>
             <Input type="text" placeholder="Email" name="email" onChange={handleChange} />
@@ -58,6 +75,7 @@ const Login = ({ history }) => {
           className="btn-success"
           value={login ? "Login" : "Register"}
           type="submit"
+          disabled={!value.email || !value.firstName || !value.lastName || !value.password}
         />
 
         <Button

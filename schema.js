@@ -32,10 +32,12 @@ export default `
     type Response {
         info: Users
         success: Boolean!
+        token:  String
         errors: [Error]
     }
 
     type Mutation{
+        login( email: String!, password: String!) : Response!
         createUser(
             avatar: String,
             firstName: String!,

@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import auth from './auth';
 
 
 const formatErrors = (error, otherErrors) => {
@@ -59,6 +60,7 @@ export default {
         }
     },
     Mutation: {
+        login: async (parent, {email, password}, {models: {Users}, SECRET}) => auth.login(email, password, Users, SECRET),
         createUser: async (parent, {
             password,
             ...args

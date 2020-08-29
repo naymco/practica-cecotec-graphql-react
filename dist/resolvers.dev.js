@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _bcrypt = _interopRequireDefault(require("bcrypt"));
 
+var _auth = _interopRequireDefault(require("./auth"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -124,16 +126,33 @@ var _default = {
     }
   },
   Mutation: {
-    createUser: function createUser(parent, _ref4, _ref5) {
-      var password, args, models, otherErrors, hashPassword, user;
-      return regeneratorRuntime.async(function createUser$(_context4) {
+    login: function login(parent, _ref4, _ref5) {
+      var email, password, Users, SECRET;
+      return regeneratorRuntime.async(function login$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              password = _ref4.password, args = _objectWithoutProperties(_ref4, ["password"]);
-              models = _ref5.models;
+              email = _ref4.email, password = _ref4.password;
+              Users = _ref5.models.Users, SECRET = _ref5.SECRET;
+              return _context4.abrupt("return", _auth["default"].login(email, password, Users, SECRET));
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      });
+    },
+    createUser: function createUser(parent, _ref6, _ref7) {
+      var password, args, models, otherErrors, hashPassword, user;
+      return regeneratorRuntime.async(function createUser$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              password = _ref6.password, args = _objectWithoutProperties(_ref6, ["password"]);
+              models = _ref7.models;
               otherErrors = [];
-              _context4.prev = 3;
+              _context5.prev = 3;
 
               if (password.length < 8) {
                 otherErrors.push({
@@ -142,66 +161,66 @@ var _default = {
                 });
               }
 
-              _context4.next = 7;
+              _context5.next = 7;
               return regeneratorRuntime.awrap(_bcrypt["default"].hash(password, 10));
 
             case 7:
-              hashPassword = _context4.sent;
-              _context4.next = 10;
+              hashPassword = _context5.sent;
+              _context5.next = 10;
               return regeneratorRuntime.awrap(models.Users.create(_objectSpread({}, args, {
                 password: hashPassword
               })));
 
             case 10:
-              user = _context4.sent;
+              user = _context5.sent;
 
               if (!otherErrors.length) {
-                _context4.next = 13;
+                _context5.next = 13;
                 break;
               }
 
               throw otherErrors;
 
             case 13:
-              return _context4.abrupt("return", {
+              return _context5.abrupt("return", {
                 info: user,
                 success: true,
                 errors: []
               });
 
             case 16:
-              _context4.prev = 16;
-              _context4.t0 = _context4["catch"](3);
-              return _context4.abrupt("return", {
+              _context5.prev = 16;
+              _context5.t0 = _context5["catch"](3);
+              return _context5.abrupt("return", {
                 success: false,
-                errors: formatErrors(_context4.t0, otherErrors)
+                errors: formatErrors(_context5.t0, otherErrors)
               });
 
             case 19:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
       }, null, null, [[3, 16]]);
     },
-    createProduct: function createProduct(parent, args, _ref6) {
+    createProduct: function createProduct(parent, args, _ref8) {
       var models, product;
-      return regeneratorRuntime.async(function createProduct$(_context5) {
+      return regeneratorRuntime.async(function createProduct$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              models = _ref6.models;
+              models = _ref8.models;
               console.log(args);
-              _context5.next = 4;
+              _context6.next = 4;
               return regeneratorRuntime.awrap(models.Products.create(args));
 
             case 4:
-              product = _context5.sent;
-              return _context5.abrupt("return", product);
+              product = _context6.sent;
+              return _context6.abrupt("return", product);
 
             case 6:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
       });

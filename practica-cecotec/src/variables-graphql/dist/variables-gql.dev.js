@@ -18,7 +18,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\nmutation($email: String!, $firstName: String!, $lastName: String!, $avatar: String, $password: String!)\n{\ncreateUser(\n  avatar: $avatar\n  firstName: $firstName\n  lastName: $lastName\n  email: $email\n  password: $password\n) \n}\n"]);
+  var data = _taggedTemplateLiteral(["\n\nmutation($email: String!, $firstName: String!, $lastName: String!, $avatar: String, $password: String!)\n{\ncreateUser(\n  avatar: $avatar\n  firstName: $firstName\n  lastName: $lastName\n  email: $email\n  password: $password\n) {\n    info {\n      firstName lastName email\n    }\n      success\n      errors{\n        path\n        message\n      }\n  }\n\n}\n"]);
 
   _templateObject = function _templateObject() {
     return data;

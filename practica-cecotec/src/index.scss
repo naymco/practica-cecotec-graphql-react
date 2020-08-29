@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
+
+
 // Colores base
 $bgNightColor: #111111;
 $bgBaseColor: #3d3d3d;
+$bgDisabledColor: #b8b8b8;
 $bgPrimaryColor: #0094b9;
-$bgAlertColor: #e44e4e;
+$bgAlertColor: #e9e1e1;
+$bgAlertFont: #a51d1d;
 $bgSuccessColor: #409140;
 $bgLigthColor: #fafafa;
 $bgGreyColor: #d7d7d7;
@@ -64,7 +69,7 @@ body {
 
   .container {
     box-sizing: border-box;
-    background: url('https://pixabay.com/get/51e6dd474854b108feda8460da2932771d3ad8e35b5170_1920.jpg');
+    background: url('./assets/images/books-768426_1920.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -87,9 +92,6 @@ body {
       -webkit-box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
       box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
-      animation: register-form 0.5s linear both;
-
-    
 
       h1 {
         font-family: $titleh1;
@@ -107,6 +109,12 @@ body {
         border: $borderNone;
       }
 
+      button:disabled,
+      button[disabled] {
+        background-color: $bgGreyColor;
+        color: $bgDisabledColor;
+      }
+
       .btn-success {
         width: 78%;
         margin: $marginXs;
@@ -117,7 +125,7 @@ body {
         color: $bgLigthColor;
       }
 
-      .btn-primary{
+      .btn-primary {
         width: 78%;
         margin: $marginXs;
         padding: $paddingXs;
@@ -126,6 +134,18 @@ body {
         background-color: $bgPrimaryColor;
         color: $bgLigthColor;
       }
+
+      .errors-validator {
+        background: $bgAlertColor;
+        border-radius: $borderRadiusSm;
+        border: 1px solid $bgAlertFont;
+        margin: 1% 10%;
+        padding: $paddingSm;
+        color: $bgAlertFont;
+        font-family: 'Baloo Tamma 2', cursive;
+        transition: .5s;
+      }
+
     }
   }
 

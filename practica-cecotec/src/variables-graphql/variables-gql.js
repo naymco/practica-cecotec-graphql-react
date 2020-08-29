@@ -11,7 +11,17 @@ createUser(
   lastName: $lastName
   email: $email
   password: $password
-) 
+) {
+    info {
+      firstName lastName email
+    }
+      success
+      errors{
+        path
+        message
+      }
+  }
+
 }
 `;
 

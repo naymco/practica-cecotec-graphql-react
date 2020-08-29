@@ -14,13 +14,16 @@ import models from './models';
 
 const PORT = 3000;
 
+const SECRET = 'estoesunsecretomuysecreto';
+
 const app = express();
 
 const server = new ApolloServer({
     typeDefs,
     resolvers, 
     context: {
-        models
+        models,
+        SECRET
     }
 });
 server.applyMiddleware({
