@@ -52,7 +52,7 @@ app.use('/graphql', (0, _cors["default"])(corsOptions), _bodyParser["default"].j
 
 _mongoose["default"].set('useCreateIndex', true);
 
-_mongoose["default"].connect('mongodb://localhost:27017/practica-cecotec', {
+_mongoose["default"].connect('mongodb+srv://practicaCecotec:WSxj2rB2fvYeDHDP@cluster0.c3yws.mongodb.net/practica-cecotec?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, function () {

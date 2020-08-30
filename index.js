@@ -47,7 +47,7 @@ server.applyMiddleware({ app });
 app.use('/graphql', cors(corsOptions), bodyParser.json());
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost:27017/practica-cecotec', {
+mongoose.connect('mongodb+srv://practicaCecotec:WSxj2rB2fvYeDHDP@cluster0.c3yws.mongodb.net/practica-cecotec?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => console.log('conectado a mongodb'));
