@@ -142,8 +142,8 @@ body {
   }
 
     .card-img{
-      height: 350px;
-      width: 350px;
+      height: 300px;
+      width: 50%;
       object-fit: cover;
       padding: $paddingXs;
     }
@@ -183,7 +183,7 @@ body {
       justify-content: space-around;
 
       .product-panel{
-        margin: $marginSm;
+        margin: $marginSm 0;
         border: 1px solid $bgGreyColor;
         border-radius: $borderRadiusLg;
         text-align: center;
@@ -258,6 +258,11 @@ body {
           width: 50%;
         }
       } 
+
+      .card-img{
+        height: 300px;
+        width: 100%;
+      }
     }
   }
 
@@ -268,10 +273,17 @@ body {
         display: block;
         .product-panel{
           width: 100%;
+         
         }
         .form-panel{
           width: 100%;
+          margin: $marginXs 0;
         }
-      } 
+      }
+      
+      .card-img{
+        height: 300px;
+        width: 100%;
+      }
     }
   }

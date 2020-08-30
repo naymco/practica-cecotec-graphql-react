@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ALL_PRODUCTS, CREATE_NEW_PRODUCT } from '../variables-graphql/variables-gql';
@@ -42,18 +42,7 @@ const Admin = ()=>{
   }
 
   if (loading) return <p>Loading...</p>;
-  if (error)
-    return (
-      <div className="container-acceso-denegado">
-        <div className="acceso-denegado">
-          <h1> Acceso denegado. </h1>
-          <p>   
-            Para poder ver este contenido debes estar
-            <Link to="/login">registrado o logueado</Link>.
-          </p>
-        </div>
-      </div>
-    );
+  if (error) return <Redirect to="/login" />;
 
   return(
     <div>
