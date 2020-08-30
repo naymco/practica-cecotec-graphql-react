@@ -21,7 +21,7 @@ export default `
         productName: String!
         description: String!
         image: String
-        price: Int!
+        price: String!
     }
 
     type Error{
@@ -50,7 +50,7 @@ export default `
             productName: String!,
             description: String!,
             image: String,
-            price: Int!
+            price: String!
         ) : Products!
     }
 `;

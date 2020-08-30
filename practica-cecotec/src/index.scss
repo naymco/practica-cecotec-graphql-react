@@ -22,8 +22,8 @@ $borderNone: none;
 $titleh1: 'Righteous',
 cursive;
 // tamaño de fuentes
-$fontSizeLg: 2rem;
-$fontSizeSm: 1rem;
+$fontSizeLg: 4rem;
+$fontSizeSm: 2rem;
 
 // contenedor
 $containerHz: flex;
@@ -48,26 +48,15 @@ $marginLg: 30px;
 $marginXs: 5px;
 
 body {
-  background-color: $bgLigthColor;
+  background-color: white;
   color: $bgBaseColor;
   margin: 0;
   padding: 0;
 
-
-  .nav-bar {
-    background-color: $bgBaseColor;
-    color: $bgLigthColor;
-    border-radius: $borderRadiusSm;
-    padding: $paddingXs;
-
-    .a {
-      padding: $paddingXs;
-      color: $bgLigthColor;
-      text-decoration: none;
-    }
+  .logo{
+    width: 150px;
   }
-
-  .container {
+  .container-custom {
     box-sizing: border-box;
     background: url('./assets/images/books-768426_1920.jpg');
     background-position: center;
@@ -76,7 +65,7 @@ body {
     width: $widthFull;
     height: 100vh;
 
-    .register-form {
+    .register-forms{
       position: absolute;
       left: 50%;
       top: 50%;
@@ -101,13 +90,7 @@ body {
         width: $widthMedium;
       }
 
-      input {
-        width: $widthLarge;
-        margin: $marginXs;
-        padding: $paddingSm;
-        border-radius: $borderRadiusSm;
-        border: $borderNone;
-      }
+      
 
       button:disabled,
       button[disabled] {
@@ -115,25 +98,7 @@ body {
         color: $bgDisabledColor;
       }
 
-      .btn-success {
-        width: 78%;
-        margin: $marginXs;
-        padding: $paddingSm 0;
-        border-radius: $borderRadiusSm;
-        border: 1px solid $bgGreyColor;
-        background-color: $bgSuccessColor;
-        color: $bgLigthColor;
-      }
-
-      .btn-primary {
-        width: 78%;
-        margin: $marginXs;
-        padding: $paddingXs;
-        border-radius: $borderRadiusSm;
-        border: 1px solid $bgGreyColor;
-        background-color: $bgPrimaryColor;
-        color: $bgLigthColor;
-      }
+      
 
       .errors-validator {
         background: $bgAlertColor;
@@ -148,6 +113,165 @@ body {
 
     }
   }
+  input {
+    width: $widthLarge;
+    margin: $marginXs;
+    padding: $paddingSm;
+    border-radius: $borderRadiusSm;
+    border: $borderNone;
+  }
 
+  .btn-success {
+    width: 78%;
+    margin: $marginXs;
+    padding: $paddingSm 0;
+    border-radius: $borderRadiusLg;
+    // border: 1px solid $bgGreyColor;
+    background: $bgSuccessColor;
+    color: $bgLigthColor;
+  }
 
-}
+  .btn-primary {
+    width: 78%;
+    margin: $marginXs;
+    padding: $paddingXs;
+    border-radius: $borderRadiusSm;
+    border: 1px solid $bgGreyColor;
+    background-color: $bgPrimaryColor;
+    color: $bgLigthColor;
+  }
+
+    .card-img{
+      height: 350px;
+      width: 350px;
+      object-fit: cover;
+      padding: $paddingXs;
+    }
+
+    .boton-price{
+      background-color: $bgPrimaryColor;
+      padding: $paddingSm;
+      color: $bgLigthColor;
+      border-radius: $borderRadiusSm;
+    }
+
+    .container-acceso-denegado{
+      background: url('./assets/images/wall-1312336_1920.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 100vh;
+      .acceso-denegado{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: $bgLigthColor;
+        h1{
+          font-size: $fontSizeLg;
+        }
+        p{
+          font-size: $fontSizeSm;
+        }
+      }
+    }
+
+    .container-panels{
+      display: flex;
+      justify-content: space-around;
+
+      .product-panel{
+        margin: $marginSm;
+        border: 1px solid $bgGreyColor;
+        border-radius: $borderRadiusLg;
+        text-align: center;
+        padding: $paddingSm 0;
+        width: 60%;
+        h3{
+          margin: $marginSm;
+          padding-bottom: $paddingSm;
+          border-bottom: 1px solid $bgGreyColor;
+        }
+        .list-product{
+          display: flex;
+          justify-content: space-between;
+          margin: $marginSm;
+          border-bottom: 1px solid $bgGreyColor;
+          padding: $paddingXs;
+        }
+        .list-product:hover{
+          cursor: pointer;
+          background: $bgBaseColor;
+          color: $bgLigthColor;
+          
+        }
+        .list-title{
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 2px solid $bgBaseColor;
+          margin: $marginSm;
+          padding: $paddingXs;
+          font-weight: 700;
+        }
+
+      }
+      .form-panel{
+        margin: $marginSm;
+        padding: $paddingSm 0;
+        border: 1px solid $bgGreyColor;
+        border-radius: $borderRadiusLg;
+        text-align: center;
+        background-color: $bgBaseColor;
+        color: $bgLigthColor;
+        width: 40%;
+        h3{
+          margin: $marginSm;
+          border-bottom: 1px solid $bgGreyColor;
+          padding-bottom: $paddingSm;
+        }
+      }
+
+      
+    }
+    .user-panel{
+      margin: $marginSm;
+      border: 1px solid $bgGreyColor;
+      border-radius: $borderRadiusLg;
+      text-align: center;
+      padding: $paddingSm 0;
+      width: 60%;
+    }
+
+  }
+  
+  @media (min-width: 800px) and (max-width: 1200px){
+    body{
+      .container-panels{
+        
+        display: flex;
+        .product-panel{
+          width: 50%;
+        }
+        .form-panel{
+          width: 50%;
+        }
+      } 
+    }
+  }
+
+  @media (min-width: 0px) and (max-width: 799px){
+    body{
+      .container-panels{
+        width: 100%;
+        display: block;
+        .product-panel{
+          width: 100%;
+        }
+        .form-panel{
+          width: 100%;
+        }
+      } 
+    }
+  }

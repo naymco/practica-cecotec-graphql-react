@@ -1,23 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap");
 body {
-  background-color: #fafafa;
+  background-color: white;
   color: #3d3d3d;
   margin: 0;
   padding: 0;
 }
-body .nav-bar {
-  background-color: #3d3d3d;
-  color: #fafafa;
-  border-radius: 3px;
-  padding: 5px;
+body .logo {
+  width: 150px;
 }
-body .nav-bar .a {
-  padding: 5px;
-  color: #fafafa;
-  text-decoration: none;
-}
-body .container {
+body .container-custom {
   box-sizing: border-box;
   background: url("./assets/images/books-768426_1920.jpg");
   background-position: center;
@@ -26,7 +18,7 @@ body .container {
   width: 100%;
   height: 100vh;
 }
-body .container .register-form {
+body .container-custom .register-forms {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -43,43 +35,18 @@ body .container .register-form {
   -moz-box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
   box-shadow: inset -93px -34px 300px 200px rgba(0, 0, 0, 0.75);
 }
-body .container .register-form h1 {
+body .container-custom .register-forms h1 {
   font-family: "Righteous", cursive;
 }
-body .container .register-form img {
+body .container-custom .register-forms img {
   width: 50%;
 }
-body .container .register-form input {
-  width: 75%;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 3px;
-  border: none;
-}
-body .container .register-form button:disabled,
-body .container .register-form button[disabled] {
+body .container-custom .register-forms button:disabled,
+body .container-custom .register-forms button[disabled] {
   background-color: #d7d7d7;
   color: #b8b8b8;
 }
-body .container .register-form .btn-success {
-  width: 78%;
-  margin: 5px;
-  padding: 10px 0;
-  border-radius: 3px;
-  border: 1px solid #d7d7d7;
-  background-color: #409140;
-  color: #fafafa;
-}
-body .container .register-form .btn-primary {
-  width: 78%;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #d7d7d7;
-  background-color: #0094b9;
-  color: #fafafa;
-}
-body .container .register-form .errors-validator {
+body .container-custom .register-forms .errors-validator {
   background: #e9e1e1;
   border-radius: 3px;
   border: 1px solid #a51d1d;
@@ -88,4 +55,146 @@ body .container .register-form .errors-validator {
   color: #a51d1d;
   font-family: "Baloo Tamma 2", cursive;
   transition: 0.5s;
+}
+body input {
+  width: 75%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+}
+body .btn-success {
+  width: 78%;
+  margin: 5px;
+  padding: 10px 0;
+  border-radius: 5px;
+  background: #409140;
+  color: #fafafa;
+}
+body .btn-primary {
+  width: 78%;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #d7d7d7;
+  background-color: #0094b9;
+  color: #fafafa;
+}
+body .card-img {
+  height: 350px;
+  width: 350px;
+  object-fit: cover;
+  padding: 5px;
+}
+body .boton-price {
+  background-color: #0094b9;
+  padding: 10px;
+  color: #fafafa;
+  border-radius: 3px;
+}
+body .container-acceso-denegado {
+  background: url("./assets/images/wall-1312336_1920.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+}
+body .container-acceso-denegado .acceso-denegado {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fafafa;
+}
+body .container-acceso-denegado .acceso-denegado h1 {
+  font-size: 4rem;
+}
+body .container-acceso-denegado .acceso-denegado p {
+  font-size: 2rem;
+}
+body .container-panels {
+  display: flex;
+  justify-content: space-around;
+}
+body .container-panels .product-panel {
+  margin: 10px;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 0;
+  width: 60%;
+}
+body .container-panels .product-panel h3 {
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d7d7d7;
+}
+body .container-panels .product-panel .list-product {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 5px;
+}
+body .container-panels .product-panel .list-product:hover {
+  cursor: pointer;
+  background: #3d3d3d;
+  color: #fafafa;
+}
+body .container-panels .product-panel .list-title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #3d3d3d;
+  margin: 10px;
+  padding: 5px;
+  font-weight: 700;
+}
+body .container-panels .form-panel {
+  margin: 10px;
+  padding: 10px 0;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #3d3d3d;
+  color: #fafafa;
+  width: 40%;
+}
+body .container-panels .form-panel h3 {
+  margin: 10px;
+  border-bottom: 1px solid #d7d7d7;
+  padding-bottom: 10px;
+}
+body .user-panel {
+  margin: 10px;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 0;
+  width: 60%;
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  body .container-panels {
+    display: flex;
+  }
+  body .container-panels .product-panel {
+    width: 50%;
+  }
+  body .container-panels .form-panel {
+    width: 50%;
+  }
+}
+@media (min-width: 0px) and (max-width: 799px) {
+  body .container-panels {
+    width: 100%;
+    display: block;
+  }
+  body .container-panels .product-panel {
+    width: 100%;
+  }
+  body .container-panels .form-panel {
+    width: 100%;
+  }
 }

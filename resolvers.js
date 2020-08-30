@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import auth from './auth';
+import { isAuthenticatedResolver } from './permissions';
 
 
 const formatErrors = (error, otherErrors) => {
@@ -23,7 +24,7 @@ const formatErrors = (error, otherErrors) => {
     }
 
     const uknownError = {}
-    switch(error.code){
+    switch (error.code) {
         case 11000:
             uknownError.path = 'email';
             uknownError.message = 'El email ya existe prueba con otro, por favor';
@@ -37,36 +38,30 @@ const formatErrors = (error, otherErrors) => {
 
 export default {
     Query: {
-        allUsers: async (parent, args, {
-            models
-        }) => {
-            const users = await models.Users.find();
-            console.log(args);
-            return users;
-        },
-        getUser: async (parent, args, {
-            models
-        }) => {
-            const onlyUser = await models.Users.findOne(args);
-            console.log(onlyUser);
-            return onlyUser;
-        },
-        allProducts: async (parent, args, {
-            models
-        }) => {
-            const products = await models.Products.find();
-
-            return products;
-        }
+        allUsers: isAuthenticatedResolver.createResolver(
+            async (parent, args, { models }) => {
+                const user  = await models.Users.find()
+                return user;
+            }
+            
+        ),
+        getUser: isAuthenticatedResolver.createResolver(
+            async (parent, args, { models }) => {
+                const onlyUser = await models.Users.findOne(args);
+                return onlyUser;
+            }
+        ),
+        
+        allProducts: isAuthenticatedResolver.createResolver(
+            async (parent, args, { models }) => {
+                const products = await models.Products.find();
+                return products;
+            }
+        )
     },
     Mutation: {
-        login: async (parent, {email, password}, {models: {Users}, SECRET}) => auth.login(email, password, Users, SECRET),
-        createUser: async (parent, {
-            password,
-            ...args
-        }, {
-            models
-        }) => {
+        login: async (parent, {email,password}, {models: {Users},SECRET}) => auth.login(email, password, Users, SECRET),
+        createUser: async (parent, {password,...args}, {models}) => {
             const otherErrors = [];
             try {
                 if (password.length < 8) {
@@ -75,23 +70,21 @@ export default {
                         message: 'El password debe contener mínimo 8 caracteres.'
                     });
                 }
-                const hashPassword = await bcrypt.hash(password, 10)
-                const user = await models.Users.create({
-                    ...args,
-                    password: hashPassword
-                });
-
-                if(otherErrors.length){
+                if (otherErrors.length) {
                     throw otherErrors;
                 }
+
+                const hashPassword = await bcrypt.hash(password, 10)
+                const user = await models.Users.create({ ...args, password: hashPassword });
 
                 return {
                     info: user,
                     success: true,
                     errors: []
                 };
+                
             } catch (error) {
-              
+
                 return {
                     success: false,
                     errors: formatErrors(error, otherErrors)
@@ -101,15 +94,10 @@ export default {
         createProduct: async (parent, args, {
             models
         }) => {
-            console.log(args);
+            // console.log(args);
             const product = await models.Products.create(args);
 
             return product;
         },
-        // updateUser: async (parent, args, { models }) =>{
-        //     const upUser = await models.Users.update(args);
-
-        //     return upUser;
-        // }
     }
 }

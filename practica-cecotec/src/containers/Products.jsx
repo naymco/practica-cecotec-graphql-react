@@ -1,5 +1,8 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
+
+import { GET_ALL_PRODUCTS } from '../variables-graphql/variables-gql'
 
 // CSS
 import "../index.scss";
@@ -7,40 +10,55 @@ import "../index.scss";
 // Components
 import Navbar from "../components/Navbar";
 
-const GET_ALL_PRODUCTS = gql`
-{
-    allProducts{
-        _id
-      productName 
-      description 
-      price
-    }
-  }
-`;
-
 const Products = () => {
   const { loading, error, data } = useQuery(GET_ALL_PRODUCTS);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p> Error D:</p>;
+  if (error)
+    return (
+      <div className="container-acceso-denegado">
+        <div className="acceso-denegado">
+          <h1> Acceso denegado. </h1>
+          <p>
+            
+            Para poder ver este contenido debes estar{" "}
+            <Link to="/login">registrado o logueado</Link> .{" "}
+          </p>
+        </div>
+      </div>
+    );
 
   return (
     <div>
       <Navbar />
-      <h1>Users List</h1>
-      {data.allProducts.map((products) => {
-        console.log(products);
-        return (
-          <div key={products._id}>
-            <p>
-             Nombre del producto: {products.productName} 
-            </p>
-            <p>Descripción: {products.description} </p>
-            <p>Precio: {products.price} </p>
-            <hr/>
-          </div>
-        );
-      })}
+      <div className="container">
+        <h1>Productos más vendidos</h1>
+        {data.allProducts.map(({ _id, image, productName, description, price}) => {
+          
+          return (
+            <div className="card mb-3" key={_id}>
+              <div className="row no-gutters">
+                <div className="col-md-6">
+                  <img
+                    src={image}
+                    className="card-img"
+                    alt={productName}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <div className="card-body">
+                    <h3 className="card-title">{productName}</h3>
+                    <p className="card-text">
+                      Descripción: {description}
+                    </p>
+                    <p className="card-text boton-price">Precio: {price} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
