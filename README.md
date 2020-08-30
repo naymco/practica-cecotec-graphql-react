@@ -1,7 +1,7 @@
 # Practica Cecotec - Ecommerce en Express, Graphql y React
 > Ejercicio practico para vacante en CECOTEC de desarrollador en Reactjs y Graphql.
 
-![Captua login panel](./practica-cecotec/assets/images/cap_login_panel.jpg)
+![Captua login panel](https://raw.githubusercontent.com/naymco/practica-cecotec-graphql-react/master/practica-cecotec/src/assets/images/cap_login_panel.jpg)
 
 Se trata de un ecommerce con diferentes paneles. Para la prueba se pedía autentificación, presentación de productos y presentación de usuarios.
 
